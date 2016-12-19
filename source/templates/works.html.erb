@@ -1,0 +1,23 @@
+<% content_for(:head) do %>
+  <%= dato_meta_tags(dato.home) %>
+<% end %>
+
+<div class="showcase" data-next-url="<%= pager.next_page ? pager.page_path(pager.next_page) : '' %>">
+  <% items.each do |work| %>
+    <div class="showcase__item">
+      <figure class="card">
+        <a href="/works/<%= work.slug %>" class="card__image">
+          <img src="<%= work.cover_image.url(w: 450, fm: 'jpg') %>">
+        </a>
+        <figcaption class="card__caption">
+          <h6 class="card__title">
+            <a href="/works/<%= work.slug %>"><%= work.title %></a>
+          </h6>
+          <div class="card__description">
+            <p><%= work.excerpt %></p>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  <% end %>
+</div>

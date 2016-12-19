@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="<%= dato.site.locales.first %>">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= yield_content :head %>
+    <% if build? %>
+      <%= stylesheet_link_tag :all %>
+    <% end %>
+    <%= dato_favicon_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__sidebar">
+        <div class="sidebar">
+          <h6 class="sidebar__title">
+            <a href="/"><%= dato.site.global_seo.site_name %></a>
+          </h6>
+
+          <div class="sidebar__intro">
+            <%= markdownify(dato.home.intro_text) %>
+          </div>
+
+          <ul class="sidebar__menu">
+            <li class="<%= current_page.path === 'index.html' ? 'is-active' : '' %>">
+              <a href="/">Home</a>
+            </li>
+            <li class="<%= current_page.path === 'about.html' ? 'is-active' : '' %>">
+              <a href="/about">About</a>
+            </li>
+          </ul>
+          <p class="sidebar__social">
+            <% dato.social_profiles.each do |profile| %>
+              <a href="<%= profile.url %>" class="social social--<%= profile.profile_type.downcase.gsub(/ +/, '-') %>"></a>
+            <% end %>
+          </p>
+          <div class="sidebar__copyright">
+            <%= dato.home.copyright %>
+          </div>
+        </div>
+      </div>
+      <div class="container__body">
+        <div class="container__mobile-header">
+          <div class="mobile-header">
+            <div class="mobile-header__menu">
+              <a href="#" data-js="toggleSidebar"></a>
+            </div>
+            <div class="mobile-header__logo">
+              <a href="/index.html">
+                <%= dato.site.global_seo.site_name %>
+              </a>
+            </div>
+          </div>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+    <%= javascript_include_tag "all" %>
+  </body>
+</html>

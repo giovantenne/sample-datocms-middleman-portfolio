@@ -1,0 +1,7 @@
+.env
+/.bundle
+/build
+/.sass-cache
+/.cache
+/.tmp
+.DS_Store
